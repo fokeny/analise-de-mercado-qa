@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" class="">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,10 +9,19 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+        }
+    </script>
     <style>
         body {
             font-family: 'Inter', sans-serif;
             background-color: #f0f4f8;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        .dark body {
+            background-color: #0f172a;
         }
         .chart-container {
             position: relative;
@@ -58,30 +67,41 @@
              padding: 0.25rem 0.75rem;
              border-radius: 9999px;
         }
+        .dark .skill-tag {
+            background-color: #0369a1;
+            color: #e0f2fe;
+        }
     </style>
 </head>
-<body class="text-gray-800">
+<body class="text-gray-800 dark:text-gray-200">
 
-    <div class="container mx-auto p-4 sm:p-6 md:p-8">
-        <header class="text-center mb-12">
-            <h1 class="text-4xl md:text-5xl font-extrabold text-[#0060F0] mb-2">Análise de Mercado para QA Júnior</h1>
-            <p class="text-lg text-gray-600">Um panorama completo sobre competências, salários e tendências para iniciar a carreira em Qualidade de Software.</p>
+    <div class="container mx-auto p-4 sm:p-6 md:p-8 relative">
+        <div class="absolute top-4 right-4">
+            <button id="theme-toggle" type="button" class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5">
+                <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+                <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+            </button>
+        </div>
+
+        <header class="text-center mb-12 pt-10">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-[#0060F0] dark:text-[#00A0F0] mb-2">Análise de Mercado para QA Júnior</h1>
+            <p class="text-lg text-gray-600 dark:text-gray-400">Um panorama completo sobre competências, salários e tendências para iniciar a carreira em Qualidade de Software.</p>
         </header>
 
         <main class="space-y-12">
-            <section id="competencias" class="bg-white rounded-xl shadow-lg p-6 md:p-8">
-                <h2 class="text-3xl font-bold text-center mb-8 text-[#0020F0]">Análise de Competências</h2>
+            <section id="competencias" class="bg-white dark:bg-slate-800 rounded-xl shadow-lg p-6 md:p-8">
+                <h2 class="text-3xl font-bold text-center mb-8 text-[#0020F0] dark:text-[#00E0F0]">Análise de Competências</h2>
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                     <div>
-                        <h3 class="text-2xl font-semibold text-center mb-4 text-[#0060F0]">Hard Skills Mais Requisitadas</h3>
-                        <p class="text-center text-gray-600 mb-6">O gráfico de barras mostra a frequência das competências técnicas mais citadas em 15 vagas de QA Júnior, destacando a forte demanda por automação e testes de API.</p>
+                        <h3 class="text-2xl font-semibold text-center mb-4 text-[#0060F0] dark:text-[#00A0F0]">Hard Skills Mais Requisitadas</h3>
+                        <p class="text-center text-gray-600 dark:text-gray-400 mb-6">O gráfico de barras mostra a frequência das competências técnicas mais citadas em 15 vagas de QA Júnior, destacando a forte demanda por automação e testes de API.</p>
                         <div id="hard-skills-container" class="chart-container">
                             <canvas id="hardSkillsChart"></canvas>
                         </div>
                     </div>
                     <div>
-                        <h3 class="text-2xl font-semibold text-center mb-4 text-[#0060F0]">Soft Skills Mais Valorizadas</h3>
-                         <p class="text-center text-gray-600 mb-6">O gráfico de anel ilustra a distribuição das competências comportamentais essenciais, onde proatividade e organização se destacam como cruciais para o sucesso na área.</p>
+                        <h3 class="text-2xl font-semibold text-center mb-4 text-[#0060F0] dark:text-[#00A0F0]">Soft Skills Mais Valorizadas</h3>
+                         <p class="text-center text-gray-600 dark:text-gray-400 mb-6">O gráfico de anel ilustra a distribuição das competências comportamentais essenciais, onde proatividade e organização se destacam como cruciais para o sucesso na área.</p>
                         <div class="chart-container h-[400px] max-h-[45vh] md:h-[450px] md:max-h-[50vh]">
                             <canvas id="softSkillsChart"></canvas>
                         </div>
@@ -90,18 +110,18 @@
             </section>
 
             <section id="salario-tendencias" class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                 <div class="md:col-span-1 bg-white rounded-xl shadow-lg p-6 flex flex-col justify-center items-center stat-card text-center">
-                    <h2 class="text-2xl font-bold text-[#0020F0] mb-4">Faixa Salarial de Referência</h2>
-                    <p class="text-gray-600 mb-4">Média para QA / Analista de Testes Júnior no Brasil.</p>
+                 <div class="md:col-span-1 bg-white dark:bg-slate-800 rounded-xl shadow-lg p-6 flex flex-col justify-center items-center stat-card text-center">
+                    <h2 class="text-2xl font-bold text-[#0020F0] dark:text-[#00E0F0] mb-4">Faixa Salarial de Referência</h2>
+                    <p class="text-gray-600 dark:text-gray-400 mb-4">Média para QA / Analista de Testes Júnior no Brasil.</p>
                     <h3 class="text-5xl font-black text-[#00A0F0]">R$ 3.3k - R$ 3.8k</h3>
-                    <p class="text-gray-500 text-sm mt-2">Fonte: Glassdoor Brasil</p>
+                    <p class="text-gray-500 dark:text-gray-500 text-sm mt-2">Fonte: Glassdoor Brasil</p>
                 </div>
-                <div class="md:col-span-2 bg-white rounded-xl shadow-lg p-6 md:p-8">
-                    <h2 class="text-3xl font-bold text-center mb-6 text-[#0020F0]">Análise de Tendências</h2>
-                    <div class="space-y-4 text-gray-700">
-                        <p><strong class="text-[#0060F0]">Foco em Automação e APIs:</strong> O mercado espera que o profissional júnior transcenda os testes manuais, com sólida base em automação e testes de API.</p>
-                        <p><strong class="text-[#0060F0]">Gestão do Ciclo de Teste:</strong> Ferramentas como Jira e TestRail são cruciais para documentar, registrar defeitos e garantir rastreabilidade.</p>
-                        <p><strong class="text-[#0060F0]">Diferenciais Competitivos:</strong> Conhecimento em SQL para validação de dados e familiaridade com Git e CI/CD são habilidades que destacam o candidato.</p>
+                <div class="md:col-span-2 bg-white dark:bg-slate-800 rounded-xl shadow-lg p-6 md:p-8">
+                    <h2 class="text-3xl font-bold text-center mb-6 text-[#0020F0] dark:text-[#00E0F0]">Análise de Tendências</h2>
+                    <div class="space-y-4 text-gray-700 dark:text-gray-300">
+                        <p><strong class="text-[#0060F0] dark:text-[#00A0F0]">Foco em Automação e APIs:</strong> O mercado espera que o profissional júnior transcenda os testes manuais, com sólida base em automação e testes de API.</p>
+                        <p><strong class="text-[#0060F0] dark:text-[#00A0F0]">Gestão do Ciclo de Teste:</strong> Ferramentas como Jira e TestRail são cruciais para documentar, registrar defeitos e garantir rastreabilidade.</p>
+                        <p><strong class="text-[#0060F0] dark:text-[#00A0F0]">Diferenciais Competitivos:</strong> Conhecimento em SQL para validação de dados e familiaridade com Git e CI/CD são habilidades que destacam o candidato.</p>
                         <div>
                             <h4 class="text-xl font-semibold mt-6 mb-2 text-[#00A0F0]">Tecnologias Emergentes</h4>
                             <ul class="list-disc list-inside space-y-1">
@@ -113,130 +133,130 @@
                 </div>
             </section>
 
-            <section id="plano-acao" class="bg-white rounded-xl shadow-lg p-6 md:p-8">
-                <h2 class="text-3xl font-bold text-center mb-8 text-[#0020F0]">Plano de Desenvolvimento para os Próximos 6 Meses</h2>
-                <p class="text-center max-w-3xl mx-auto text-gray-600 mb-10">Um cronograma estruturado para desenvolver as competências mais demandadas pelo mercado, com foco em projetos práticos para construir um portfólio sólido.</p>
+            <section id="plano-acao" class="bg-white dark:bg-slate-800 rounded-xl shadow-lg p-6 md:p-8">
+                <h2 class="text-3xl font-bold text-center mb-8 text-[#0020F0] dark:text-[#00E0F0]">Plano de Desenvolvimento para os Próximos 6 Meses</h2>
+                <p class="text-center max-w-3xl mx-auto text-gray-600 dark:text-gray-400 mb-10">Um cronograma estruturado para desenvolver as competências mais demandadas pelo mercado, com foco em projetos práticos para construir um portfólio sólido.</p>
                 <div class="relative">
                     <div class="space-y-8">
-                        <div class="flow-step border-[#00F0B5] bg-teal-50/50 p-6 rounded-lg shadow-sm">
-                            <h4 class="text-xl font-bold text-teal-700">Mês 1: Nivelamento Teórico e Ambientação</h4>
-                            <p class="text-gray-600 mt-2">Estudo dos fundamentos de teste e familiarização com Git e Jira.</p>
-                            <p class="mt-3 font-semibold text-teal-800">Projeto Prático: Elaborar um relatório de teste exploratório e registrar 10 defeitos em um template profissional.</p>
+                        <div class="flow-step border-[#00F0B5] bg-teal-50/50 dark:bg-teal-900/20 p-6 rounded-lg shadow-sm">
+                            <h4 class="text-xl font-bold text-teal-700 dark:text-teal-400">Mês 1: Nivelamento Teórico e Ambientação</h4>
+                            <p class="text-gray-600 dark:text-gray-400 mt-2">Estudo dos fundamentos de teste e familiarização com Git e Jira.</p>
+                            <p class="mt-3 font-semibold text-teal-800 dark:text-teal-300">Projeto Prático: Elaborar um relatório de teste exploratório e registrar 10 defeitos em um template profissional.</p>
                         </div>
-                        <div class="flow-step border-[#00E0F0] bg-cyan-50/50 p-6 rounded-lg shadow-sm">
-                            <h4 class="text-xl font-bold text-cyan-700">Mês 2: Aprofundamento em Testes de API</h4>
-                            <p class="text-gray-600 mt-2">Domínio da ferramenta Postman, incluindo automação de validações e execução via linha de comando.</p>
-                            <p class="mt-3 font-semibold text-cyan-800">Projeto Prático: Criar uma coleção de testes documentada e executável para uma API pública (CRUD).</p>
+                        <div class="flow-step border-[#00E0F0] bg-cyan-50/50 dark:bg-cyan-900/20 p-6 rounded-lg shadow-sm">
+                            <h4 class="text-xl font-bold text-cyan-700 dark:text-cyan-400">Mês 2: Aprofundamento em Testes de API</h4>
+                            <p class="text-gray-600 dark:text-gray-400 mt-2">Domínio da ferramenta Postman, incluindo automação de validações e execução via linha de comando.</p>
+                            <p class="mt-3 font-semibold text-cyan-800 dark:text-cyan-300">Projeto Prático: Criar uma coleção de testes documentada e executável para uma API pública (CRUD).</p>
                         </div>
-                        <div class="flow-step border-[#00A0F0] bg-sky-50/50 p-6 rounded-lg shadow-sm">
-                            <h4 class="text-xl font-bold text-sky-700">Mês 3-4: Imersão em Automação Web e CI/CD</h4>
-                            <p class="text-gray-600 mt-2">Aprendizagem de Cypress com boas práticas (Page Object Model) e integração dos testes em uma pipeline de CI/CD.</p>
-                            <p class="mt-3 font-semibold text-sky-800">Projeto Prático: Desenvolver uma suíte de testes E2E e configurar uma pipeline que gera relatórios automaticamente.</p>
+                        <div class="flow-step border-[#00A0F0] bg-sky-50/50 dark:bg-sky-900/20 p-6 rounded-lg shadow-sm">
+                            <h4 class="text-xl font-bold text-sky-700 dark:text-sky-400">Mês 3-4: Imersão em Automação Web e CI/CD</h4>
+                            <p class="text-gray-600 dark:text-gray-400 mt-2">Aprendizagem de Cypress com boas práticas (Page Object Model) e integração dos testes em uma pipeline de CI/CD.</p>
+                            <p class="mt-3 font-semibold text-sky-800 dark:text-sky-300">Projeto Prático: Desenvolver uma suíte de testes E2E e configurar uma pipeline que gera relatórios automaticamente.</p>
                         </div>
-                        <div class="flow-step border-[#0060F0] bg-blue-50/50 p-6 rounded-lg shadow-sm">
-                            <h4 class="text-xl font-bold text-blue-700">Mês 5: Validação de Dados e Refinamento</h4>
-                            <p class="text-gray-600 mt-2">Estudo de SQL para validação de testes e aprimoramento da escrita de casos de teste e relatórios de bugs.</p>
-                            <p class="mt-3 font-semibold text-blue-800">Projeto Prático: Revisar artefatos documentais e incluir validações com SQL em um caso de teste.</p>
+                        <div class="flow-step border-[#0060F0] bg-blue-50/50 dark:bg-blue-900/20 p-6 rounded-lg shadow-sm">
+                            <h4 class="text-xl font-bold text-blue-700 dark:text-blue-400">Mês 5: Validação de Dados e Refinamento</h4>
+                            <p class="text-gray-600 dark:text-gray-400 mt-2">Estudo de SQL para validação de testes e aprimoramento da escrita de casos de teste e relatórios de bugs.</p>
+                            <p class="mt-3 font-semibold text-blue-800 dark:text-blue-300">Projeto Prático: Revisar artefatos documentais e incluir validações com SQL em um caso de teste.</p>
                         </div>
-                        <div class="flow-step border-[#0020F0] bg-indigo-50/50 p-6 rounded-lg shadow-sm">
-                            <h4 class="text-xl font-bold text-indigo-700">Mês 6: Projeto de Conclusão Integrado</h4>
-                            <p class="text-gray-600 mt-2">Consolidação do aprendizado em um projeto que simula um cenário real, testando um fluxo completo (UI → API → Banco de Dados).</p>
-                            <p class="mt-3 font-semibold text-indigo-800">Projeto Prático: Criar um repositório final com documentação completa, pipeline funcional e vídeo de apresentação.</p>
+                        <div class="flow-step border-[#0020F0] bg-indigo-50/50 dark:bg-indigo-900/20 p-6 rounded-lg shadow-sm">
+                            <h4 class="text-xl font-bold text-indigo-700 dark:text-indigo-400">Mês 6: Projeto de Conclusão Integrado</h4>
+                            <p class="text-gray-600 dark:text-gray-400 mt-2">Consolidação do aprendizado em um projeto que simula um cenário real, testando um fluxo completo (UI → API → Banco de Dados).</p>
+                            <p class="mt-3 font-semibold text-indigo-800 dark:text-indigo-300">Projeto Prático: Criar um repositório final com documentação completa, pipeline funcional e vídeo de apresentação.</p>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <section id="detalhamento-vagas" class="bg-white rounded-xl shadow-lg p-6 md:p-8">
-                <h2 class="text-3xl font-bold text-center mb-2 text-[#0020F0]">Detalhamento das Vagas Pesquisadas</h2>
-                <p class="text-center max-w-3xl mx-auto text-gray-600 mb-10">Veja as principais habilidades exigidas em cada uma das vagas que compõem esta análise.</p>
+            <section id="detalhamento-vagas" class="bg-white dark:bg-slate-800 rounded-xl shadow-lg p-6 md:p-8">
+                <h2 class="text-3xl font-bold text-center mb-2 text-[#0020F0] dark:text-[#00E0F0]">Detalhamento das Vagas Pesquisadas</h2>
+                <p class="text-center max-w-3xl mx-auto text-gray-600 dark:text-gray-400 mb-10">Veja as principais habilidades exigidas em cada uma das vagas que compõem esta análise.</p>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <div class="border border-gray-200 rounded-lg p-4 flex flex-col">
-                        <h3 class="font-bold text-lg text-[#0060F0] mb-3">Desbravador</h3>
+                    <div class="border border-gray-200 dark:border-gray-700 rounded-lg p-4 flex flex-col">
+                        <h3 class="font-bold text-lg text-[#0060F0] dark:text-[#00A0F0] mb-3">Desbravador</h3>
                         <div class="flex-grow flex flex-wrap gap-2 content-start">
                             <span class="skill-tag">Testes Manuais</span><span class="skill-tag">APIs (Postman/SoapUI)</span><span class="skill-tag">SQL</span><span class="skill-tag">Automação (Diferencial)</span>
                         </div>
                     </div>
-                    <div class="border border-gray-200 rounded-lg p-4 flex flex-col">
-                        <h3 class="font-bold text-lg text-[#0060F0] mb-3">FITec</h3>
+                    <div class="border border-gray-200 dark:border-gray-700 rounded-lg p-4 flex flex-col">
+                        <h3 class="font-bold text-lg text-[#0060F0] dark:text-[#00A0F0] mb-3">FITec</h3>
                         <div class="flex-grow flex flex-wrap gap-2 content-start">
                             <span class="skill-tag">Automação (Selenium/Cypress)</span><span class="skill-tag">APIs (Postman/Insomnia)</span><span class="skill-tag">Jira/AzureDevOps</span><span class="skill-tag">SQL</span><span class="skill-tag">Planos de Teste</span>
                         </div>
                     </div>
-                    <div class="border border-gray-200 rounded-lg p-4 flex flex-col">
-                        <h3 class="font-bold text-lg text-[#0060F0] mb-3">Deliver IT</h3>
+                    <div class="border border-gray-200 dark:border-gray-700 rounded-lg p-4 flex flex-col">
+                        <h3 class="font-bold text-lg text-[#0060F0] dark:text-[#00A0F0] mb-3">Deliver IT</h3>
                         <div class="flex-grow flex flex-wrap gap-2 content-start">
                             <span class="skill-tag">Testes de API</span><span class="skill-tag">Swagger</span><span class="skill-tag">Selenium (Desejável)</span><span class="skill-tag">JS</span><span class="skill-tag">MySQL/PostgreSQL</span><span class="skill-tag">CI/CD</span>
                         </div>
                     </div>
-                    <div class="border border-gray-200 rounded-lg p-4 flex flex-col">
-                        <h3 class="font-bold text-lg text-[#0060F0] mb-3">Quali</h3>
+                    <div class="border border-gray-200 dark:border-gray-700 rounded-lg p-4 flex flex-col">
+                        <h3 class="font-bold text-lg text-[#0060F0] dark:text-[#00A0F0] mb-3">Quali</h3>
                         <div class="flex-grow flex flex-wrap gap-2 content-start">
                             <span class="skill-tag">Planos de Teste</span><span class="skill-tag">Testes Funcionais</span><span class="skill-tag">API (Diferencial)</span><span class="skill-tag">CTFL (Diferencial)</span><span class="skill-tag">Proatividade</span>
                         </div>
                     </div>
-                    <div class="border border-gray-200 rounded-lg p-4 flex flex-col">
-                        <h3 class="font-bold text-lg text-[#0060F0] mb-3">Stefanini</h3>
+                    <div class="border border-gray-200 dark:border-gray-700 rounded-lg p-4 flex flex-col">
+                        <h3 class="font-bold text-lg text-[#0060F0] dark:text-[#00A0F0] mb-3">Stefanini</h3>
                         <div class="flex-grow flex flex-wrap gap-2 content-start">
                             <span class="skill-tag">Testes Funcionais</span><span class="skill-tag">Postman</span><span class="skill-tag">Jira/TestRail</span><span class="skill-tag">SQL</span><span class="skill-tag">Automação (Desejável)</span>
                         </div>
                     </div>
-                    <div class="border border-gray-200 rounded-lg p-4 flex flex-col">
-                        <h3 class="font-bold text-lg text-[#0060F0] mb-3">DB (Financeiro)</h3>
+                    <div class="border border-gray-200 dark:border-gray-700 rounded-lg p-4 flex flex-col">
+                        <h3 class="font-bold text-lg text-[#0060F0] dark:text-[#00A0F0] mb-3">DB (Financeiro)</h3>
                         <div class="flex-grow flex flex-wrap gap-2 content-start">
                             <span class="skill-tag">Automação com Python</span><span class="skill-tag">API/E2E</span><span class="skill-tag">Git</span><span class="skill-tag">CI/CD</span><span class="skill-tag">Agile</span>
                         </div>
                     </div>
-                    <div class="border border-gray-200 rounded-lg p-4 flex flex-col">
-                        <h3 class="font-bold text-lg text-[#0060F0] mb-3">V.tal</h3>
+                    <div class="border border-gray-200 dark:border-gray-700 rounded-lg p-4 flex flex-col">
+                        <h3 class="font-bold text-lg text-[#0060F0] dark:text-[#00A0F0] mb-3">V.tal</h3>
                         <div class="flex-grow flex flex-wrap gap-2 content-start">
                             <span class="skill-tag">Testes Funcionais</span><span class="skill-tag">Agile</span><span class="skill-tag">Postman/Jira/Selenium</span><span class="skill-tag">APIs REST</span><span class="skill-tag">Comunicação</span>
                         </div>
                     </div>
-                    <div class="border border-gray-200 rounded-lg p-4 flex flex-col">
-                        <h3 class="font-bold text-lg text-[#0060F0] mb-3">ProgramaThor</h3>
+                    <div class="border border-gray-200 dark:border-gray-700 rounded-lg p-4 flex flex-col">
+                        <h3 class="font-bold text-lg text-[#0060F0] dark:text-[#00A0F0] mb-3">ProgramaThor</h3>
                         <div class="flex-grow flex flex-wrap gap-2 content-start">
                             <span class="skill-tag">Testes Funcionais</span><span class="skill-tag">Testes de Integração</span><span class="skill-tag">Planejamento</span><span class="skill-tag">Análise de Defeitos</span>
                         </div>
                     </div>
-                    <div class="border border-gray-200 rounded-lg p-4 flex flex-col">
-                        <h3 class="font-bold text-lg text-[#0060F0] mb-3">Oakmont</h3>
+                    <div class="border border-gray-200 dark:border-gray-700 rounded-lg p-4 flex flex-col">
+                        <h3 class="font-bold text-lg text-[#0060F0] dark:text-[#00A0F0] mb-3">Oakmont</h3>
                         <div class="flex-grow flex flex-wrap gap-2 content-start">
                             <span class="skill-tag">JS/TS</span><span class="skill-tag">Cucumber/BDD</span><span class="skill-tag">Selenium</span><span class="skill-tag">JMeter/K6</span><span class="skill-tag">Postman</span><span class="skill-tag">Automação</span>
                         </div>
                     </div>
-                    <div class="border border-gray-200 rounded-lg p-4 flex flex-col">
-                        <h3 class="font-bold text-lg text-[#0060F0] mb-3">Vagas.com</h3>
+                    <div class="border border-gray-200 dark:border-gray-700 rounded-lg p-4 flex flex-col">
+                        <h3 class="font-bold text-lg text-[#0060F0] dark:text-[#00A0F0] mb-3">Vagas.com</h3>
                         <div class="flex-grow flex flex-wrap gap-2 content-start">
                             <span class="skill-tag">Automação (Java/Python/JS)</span><span class="skill-tag">Testlink/Jira</span><span class="skill-tag">Git</span><span class="skill-tag">Scrum/XP</span><span class="skill-tag">Testes (Web/Mobile)</span>
                         </div>
                     </div>
-                    <div class="border border-gray-200 rounded-lg p-4 flex flex-col">
-                        <h3 class="font-bold text-lg text-[#0060F0] mb-3">OceanPact</h3>
+                    <div class="border border-gray-200 dark:border-gray-700 rounded-lg p-4 flex flex-col">
+                        <h3 class="font-bold text-lg text-[#0060F0] dark:text-[#00A0F0] mb-3">OceanPact</h3>
                         <div class="flex-grow flex flex-wrap gap-2 content-start">
                             <span class="skill-tag">Testes Manuais</span><span class="skill-tag">Testes Automatizados</span><span class="skill-tag">Agile</span><span class="skill-tag">Eng. Requisitos</span>
                         </div>
                     </div>
-                    <div class="border border-gray-200 rounded-lg p-4 flex flex-col">
-                        <h3 class="font-bold text-lg text-[#0060F0] mb-3">Solinftec</h3>
+                    <div class="border border-gray-200 dark:border-gray-700 rounded-lg p-4 flex flex-col">
+                        <h3 class="font-bold text-lg text-[#0060F0] dark:text-[#00A0F0] mb-3">Solinftec</h3>
                         <div class="flex-grow flex flex-wrap gap-2 content-start">
                             <span class="skill-tag">Cypress</span><span class="skill-tag">Selenium</span><span class="skill-tag">HTML/CSS/JS</span><span class="skill-tag">Python</span><span class="skill-tag">Playwright (Desejável)</span>
                         </div>
                     </div>
-                    <div class="border border-gray-200 rounded-lg p-4 flex flex-col">
-                        <h3 class="font-bold text-lg text-[#0060F0] mb-3">Bellinati Perez</h3>
+                    <div class="border border-gray-200 dark:border-gray-700 rounded-lg p-4 flex flex-col">
+                        <h3 class="font-bold text-lg text-[#0060F0] dark:text-[#00A0F0] mb-3">Bellinati Perez</h3>
                         <div class="flex-grow flex flex-wrap gap-2 content-start">
                             <span class="skill-tag">Testes Manuais</span><span class="skill-tag">Robot Framework</span><span class="skill-tag">APIs (Postman/Insomnia)</span><span class="skill-tag">Python/JS/Java</span><span class="skill-tag">SQL</span>
                         </div>
                     </div>
-                    <div class="border border-gray-200 rounded-lg p-4 flex flex-col">
-                        <h3 class="font-bold text-lg text-[#0060F0] mb-3">Smart NX</h3>
+                    <div class="border border-gray-200 dark:border-gray-700 rounded-lg p-4 flex flex-col">
+                        <h3 class="font-bold text-lg text-[#0060F0] dark:text-[#00A0F0] mb-3">Smart NX</h3>
                         <div class="flex-grow flex flex-wrap gap-2 content-start">
                             <span class="skill-tag">Testes Manuais</span><span class="skill-tag">Testes de Integração</span><span class="skill-tag">Testes Automatizados</span>
                         </div>
                     </div>
-                     <div class="border border-gray-200 rounded-lg p-4 flex flex-col">
-                        <h3 class="font-bold text-lg text-[#0060F0] mb-3">ProgramaThor (Londrina)</h3>
+                     <div class="border border-gray-200 dark:border-gray-700 rounded-lg p-4 flex flex-col">
+                        <h3 class="font-bold text-lg text-[#0060F0] dark:text-[#00A0F0] mb-3">ProgramaThor (Londrina)</h3>
                         <div class="flex-grow flex flex-wrap gap-2 content-start">
                            <span class="skill-tag">Experiência em QA</span><span class="skill-tag">Comunicação</span><span class="skill-tag">Proatividade</span>
                         </div>
@@ -244,32 +264,32 @@
                 </div>
             </section>
             
-            <section id="referencias" class="bg-white rounded-xl shadow-lg p-6 md:p-8">
-                <h2 class="text-3xl font-bold text-center mb-8 text-[#0020F0]">Fontes e Referências</h2>
+            <section id="referencias" class="bg-white dark:bg-slate-800 rounded-xl shadow-lg p-6 md:p-8">
+                <h2 class="text-3xl font-bold text-center mb-8 text-[#0020F0] dark:text-[#00E0F0]">Fontes e Referências</h2>
                 <div class="max-w-4xl mx-auto">
-                    <ul class="list-disc list-inside space-y-2 text-gray-700">
-                        <li><a href="https://www.desbravador.com.br/trabalheconosco/analista-de-teste-qa-jr" target="_blank" class="text-blue-600 hover:underline">Desbravador – Analista de Testes Júnior</a></li>
-                        <li><a href="https://fitec.gupy.io/jobs/9526293?jobBoardSource=gupy_public_page" target="_blank" class="text-blue-600 hover:underline">FITec – Tester/QA Júnior</a></li>
-                        <li><a href="https://deliverit.gupy.io/jobs/9683537?jobBoardSource=gupy_public_page" target="_blank" class="text-blue-600 hover:underline">Deliver IT – Analista de QA Júnior</a></li>
-                        <li><a href="https://carreirasquali.gupy.io/jobs/9576672?jobBoardSource=gupy_public_page" target="_blank" class="text-blue-600 hover:underline">Quali – Analista de TI Jr (QA – Testes)</a></li>
-                        <li><a href="https://stefanini.gupy.io/jobs/9636824" target="_blank" class="text-blue-600 hover:underline">Stefanini – Analista de Testes Júnior</a></li>
-                        <li><a href="https://db.gupy.io/jobs/9295161?jobBoardSource=gupy_public_page" target="_blank" class="text-blue-600 hover:underline">DB – QA Automação Jr (Financeiro)</a></li>
-                        <li><a href="https://vtal.gupy.io/jobs/9517288?jobBoardSource=riovagas" target="_blank" class="text-blue-600 hover:underline">V.tal – Analista de Qualidade Júnior</a></li>
-                        <li><a href="https://programathor.com.br/jobs/29381-analista-qa-junior" target="_blank" class="text-blue-600 hover:underline">ProgramaThor – Analista QA Júnior</a></li>
-                        <li><a href="https://www.vagas.com.br/vagas/v2651654/analista-de-teste-qa-junior" target="_blank" class="text-blue-600 hover:underline">Oakmont (Vagas.com) – Analista de Teste QA Júnior</a></li>
-                        <li><a href="https://www.vagas.com.br/vagas/v2588358/tester-de-software-qa-i-jr" target="_blank" class="text-blue-600 hover:underline">Vagas.com – Tester de Software/QA I Jr</a></li>
-                        <li><a href="https://www.vagas.com.br/vagas/v268519/analista-de-testes-qa" target="_blank" class="text-blue-600 hover:underline">OceanPact (Vagas.com) – Analista de Testes QA</a></li>
-                        <li><a href="https://programathor.com.br/jobs/31476-qa-tester-presencial-londrina-pr" target="_blank" class="text-blue-600 hover:underline">ProgramaThor – QA Tester (Presencial Londrina)</a></li>
-                        <li><a href="https://solinftec.gupy.io/jobs/9313627?jobBoardSource=gupy_public_page" target="_blank" class="text-blue-600 hover:underline">Solinftec – Analista de Qualidade de Software Jr</a></li>
-                        <li><a href="https://bellinatiperez.gupy.io/jobs/9635566" target="_blank" class="text-blue-600 hover:underline">Bellinati Perez – Analista de Testes Júnior</a></li>
-                        <li><a href="https://smartnx.gupy.io/jobs/9459691" target="_blank" class="text-blue-600 hover:underline">Smart NX – QA Jr</a></li>
-                        <li><a href="https://www.glassdoor.com.br" target="_blank" class="text-blue-600 hover:underline">Glassdoor Brasil (Referência Salarial)</a></li>
+                    <ul class="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+                        <li><a href="https://www.desbravador.com.br/trabalheconosco/analista-de-teste-qa-jr" target="_blank" class="text-blue-600 dark:text-blue-400 hover:underline">Desbravador – Analista de Testes Júnior</a></li>
+                        <li><a href="https://fitec.gupy.io/jobs/9526293?jobBoardSource=gupy_public_page" target="_blank" class="text-blue-600 dark:text-blue-400 hover:underline">FITec – Tester/QA Júnior</a></li>
+                        <li><a href="https://deliverit.gupy.io/jobs/9683537?jobBoardSource=gupy_public_page" target="_blank" class="text-blue-600 dark:text-blue-400 hover:underline">Deliver IT – Analista de QA Júnior</a></li>
+                        <li><a href="https://carreirasquali.gupy.io/jobs/9576672?jobBoardSource=gupy_public_page" target="_blank" class="text-blue-600 dark:text-blue-400 hover:underline">Quali – Analista de TI Jr (QA – Testes)</a></li>
+                        <li><a href="https://stefanini.gupy.io/jobs/9636824" target="_blank" class="text-blue-600 dark:text-blue-400 hover:underline">Stefanini – Analista de Testes Júnior</a></li>
+                        <li><a href="https://db.gupy.io/jobs/9295161?jobBoardSource=gupy_public_page" target="_blank" class="text-blue-600 dark:text-blue-400 hover:underline">DB – QA Automação Jr (Financeiro)</a></li>
+                        <li><a href="https://vtal.gupy.io/jobs/9517288?jobBoardSource=riovagas" target="_blank" class="text-blue-600 dark:text-blue-400 hover:underline">V.tal – Analista de Qualidade Júnior</a></li>
+                        <li><a href="https://programathor.com.br/jobs/29381-analista-qa-junior" target="_blank" class="text-blue-600 dark:text-blue-400 hover:underline">ProgramaThor – Analista QA Júnior</a></li>
+                        <li><a href="https://www.vagas.com.br/vagas/v2651654/analista-de-teste-qa-junior" target="_blank" class="text-blue-600 dark:text-blue-400 hover:underline">Oakmont (Vagas.com) – Analista de Teste QA Júnior</a></li>
+                        <li><a href="https://www.vagas.com.br/vagas/v2588358/tester-de-software-qa-i-jr" target="_blank" class="text-blue-600 dark:text-blue-400 hover:underline">Vagas.com – Tester de Software/QA I Jr</a></li>
+                        <li><a href="https://www.vagas.com.br/vagas/v2685819/analista-de-testes-qa" target="_blank" class="text-blue-600 dark:text-blue-400 hover:underline">OceanPact (Vagas.com) – Analista de Testes QA</a></li>
+                        <li><a href="https://programathor.com.br/jobs/31476-qa-tester-presencial-londrina-pr" target="_blank" class="text-blue-600 dark:text-blue-400 hover:underline">ProgramaThor – QA Tester (Presencial Londrina)</a></li>
+                        <li><a href="https://solinftec.gupy.io/jobs/9313627?jobBoardSource=gupy_public_page" target="_blank" class="text-blue-600 dark:text-blue-400 hover:underline">Solinftec – Analista de Qualidade de Software Jr</a></li>
+                        <li><a href="https://bellinatiperez.gupy.io/jobs/9635566" target="_blank" class="text-blue-600 dark:text-blue-400 hover:underline">Bellinati Perez – Analista de Testes Júnior</a></li>
+                        <li><a href="https://smartnx.gupy.io/jobs/9459691" target="_blank" class="text-blue-600 dark:text-blue-400 hover:underline">Smart NX – QA Jr</a></li>
+                        <li><a href="https://www.glassdoor.com.br" target="_blank" class="text-blue-600 dark:text-blue-400 hover:underline">Glassdoor Brasil (Referência Salarial)</a></li>
                     </ul>
                 </div>
             </section>
         </main>
 
-        <footer class="mt-12 pt-8 border-t border-gray-200 text-center text-sm text-gray-500">
+        <footer class="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700 text-center text-sm text-gray-500 dark:text-gray-400">
             <p class="font-semibold">Integrantes do grupo: Francisco Fábio e Gabriel Costa</p>
             <p class="mt-2">&copy; 2025 Análise de Mercado QA. Todos os direitos reservados.</p>
             <p class="mt-2">Infográfico gerado com base em dados de vagas e referências salariais públicas.</p>
@@ -277,6 +297,8 @@
     </div>
 
     <script>
+        let hardSkillsChart, softSkillsChart;
+
         const wrapLabel = (label) => {
             const maxLength = 25;
             if (label.length <= maxLength) {
@@ -329,45 +351,6 @@
             }]
         };
 
-        const hardSkillsCtx = document.getElementById('hardSkillsChart').getContext('2d');
-        new Chart(hardSkillsCtx, {
-            type: 'bar',
-            data: hardSkillsData,
-            options: {
-                indexAxis: 'y',
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        display: false
-                    },
-                    tooltip: {
-                        callbacks: {
-                           title: tooltipTitleCallback
-                        }
-                    }
-                },
-                scales: {
-                    x: {
-                        beginAtZero: true,
-                        grid: {
-                            color: 'rgba(0, 0, 0, 0.05)'
-                        },
-                        ticks: {
-                            callback: function(value) {
-                                return value + '%'
-                            }
-                        }
-                    },
-                    y: {
-                         grid: {
-                            display: false
-                        }
-                    }
-                }
-            }
-        });
-
         const softSkillsData = {
             labels: ['Proatividade', 'Organização', 'Comunicação', 'Trabalho em Equipe', 'Atenção aos Detalhes'],
             datasets: [{
@@ -379,33 +362,109 @@
                 hoverOffset: 8
             }]
         };
+        
+        const lightThemeColors = {
+            ticks: '#374151',
+            grid: 'rgba(0, 0, 0, 0.05)',
+            legend: '#374151',
+            doughnutBorder: '#ffffff'
+        };
 
-        const softSkillsCtx = document.getElementById('softSkillsChart').getContext('2d');
-        new Chart(softSkillsCtx, {
-            type: 'doughnut',
-            data: softSkillsData,
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        position: 'bottom',
-                        labels: {
-                            padding: 20,
-                            font: {
-                                size: 14
-                            }
-                        }
-                    },
-                    tooltip: {
-                        callbacks: {
-                           title: tooltipTitleCallback
-                        }
-                    }
-                },
-                cutout: '60%'
+        const darkThemeColors = {
+            ticks: '#d1d5db',
+            grid: 'rgba(255, 255, 255, 0.08)',
+            legend: '#d1d5db',
+            doughnutBorder: '#0f172a'
+        };
+
+        function updateChartTheme(isDarkMode) {
+            const colors = isDarkMode ? darkThemeColors : lightThemeColors;
+
+            if(hardSkillsChart) {
+                hardSkillsChart.options.scales.x.ticks.color = colors.ticks;
+                hardSkillsChart.options.scales.y.ticks.color = colors.ticks;
+                hardSkillsChart.options.scales.x.grid.color = colors.grid;
+                hardSkillsChart.update();
             }
+            if(softSkillsChart) {
+                softSkillsChart.options.plugins.legend.labels.color = colors.legend;
+                softSkillsChart.data.datasets[0].borderColor = colors.doughnutBorder;
+                softSkillsChart.update();
+            }
+        }
+
+        function createCharts() {
+            const hardSkillsCtx = document.getElementById('hardSkillsChart').getContext('2d');
+            hardSkillsChart = new Chart(hardSkillsCtx, {
+                type: 'bar',
+                data: hardSkillsData,
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: { callbacks: { title: tooltipTitleCallback } }
+                    },
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            grid: { color: 'rgba(0, 0, 0, 0.05)' },
+                            ticks: {
+                                callback: function(value) { return value + '%' }
+                            }
+                        },
+                        y: { grid: { display: false } }
+                    }
+                }
+            });
+
+            const softSkillsCtx = document.getElementById('softSkillsChart').getContext('2d');
+            softSkillsChart = new Chart(softSkillsCtx, {
+                type: 'doughnut',
+                data: softSkillsData,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: { padding: 20, font: { size: 14 } }
+                        },
+                        tooltip: { callbacks: { title: tooltipTitleCallback } }
+                    },
+                    cutout: '60%'
+                }
+            });
+        }
+        
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const darkIcon = document.getElementById('theme-toggle-dark-icon');
+        const lightIcon = document.getElementById('theme-toggle-light-icon');
+
+        function toggleIcons(isDarkMode) {
+            darkIcon.classList.toggle('hidden', !isDarkMode);
+            lightIcon.classList.toggle('hidden', isDarkMode);
+        }
+
+        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+            toggleIcons(true);
+        } else {
+            document.documentElement.classList.remove('dark');
+            toggleIcons(false);
+        }
+        
+        createCharts();
+        updateChartTheme(document.documentElement.classList.contains('dark'));
+
+        themeToggleBtn.addEventListener('click', function() {
+            const isDarkMode = document.documentElement.classList.toggle('dark');
+            localStorage.setItem('color-theme', isDarkMode ? 'dark' : 'light');
+            toggleIcons(isDarkMode);
+            updateChartTheme(isDarkMode);
         });
+
     </script>
 </body>
 </html>
