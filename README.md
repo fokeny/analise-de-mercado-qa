@@ -1,64 +1,88 @@
-# Análise de Mercado para QA Júnior
+# Análise de Mercado para QA Júnior — Infográfico Interativo
 
-Infográfico interativo que resume **competências mais exigidas**, **tendências do mercado**, **faixa salarial de referência** e um **plano de desenvolvimento de 6 meses** para iniciar na carreira de QA/Analista de Testes Júnior.
-
-> Versão publicada: https://fokeny.github.io/analise-de-mercado-qa/
-
----
-
-## O que o projeto mostra
-
-1. **Competências (Skills)**
-   - **Hard skills** (gráfico de barras): automação de testes (Selenium/Cypress), testes de API (Postman/Swagger), gestão de bugs (Jira/TestRail), SQL, Git/CI-CD etc.
-   - **Soft skills** (gráfico de rosca): proatividade, organização, comunicação, trabalho em equipe e atenção aos detalhes.
-   - Os percentuais representam a **frequência de citação** dessas habilidades em **15 vagas** analisadas.
-
-2. **Faixa Salarial de Referência**
-   - Indicativo para QA/Analista de Testes **Júnior no Brasil**.
-   - Valores **variáveis** por região, empresa e benefícios (referência: dados públicos como Glassdoor).
-
-3. **Tendências do Mercado**
-   - Ênfase em **automação** e **testes de API** mesmo em vagas júnior.
-   - Uso de **Jira/TestRail** para rastreabilidade.
-   - Diferenciais: **SQL**, **Git**, **CI/CD**; crescimento de **Playwright** e colaboração com **BDD (Cucumber)**.
-
-4. **Plano de Desenvolvimento (6 meses)**
-   - Roteiro mensal com **projetos práticos** (exploração, API com Postman, automação Web com Cypress, SQL e projeto final integrando UI→API→BD) para compor portfólio.
-
-5. **Detalhamento das Vagas**
-   - Cartões com as principais skills solicitadas por **cada vaga** da amostra (Desbravador, FITec, Deliver IT, etc.).
-
-6. **Fontes e Referências**
-   - Links para as **vagas consultadas** e referência salarial (Glassdoor).
+## 🚀 Acesso Rápido
+Visualize o infográfico interativo diretamente no navegador:  
+**https://fokeny.github.io/analise-de-mercado-qa/**
 
 ---
 
-## Como rodar localmente
+## 📖 Sobre o Projeto
+Este projeto é uma **Single-Page Application (SPA)** que apresenta um **infográfico interativo** sobre o mercado de trabalho para profissionais de **Qualidade de Software (QA) Júnior** no Brasil.
 
-Este projeto é **estático** (HTML + Tailwind via CDN + Chart.js via CDN).
+A análise foi compilada a partir de dados extraídos de **15 vagas reais**, oferecendo um panorama claro e visual sobre:
+- **Hard Skills** mais requisitadas (automação, APIs, gestão de bugs, SQL, Git/CI-CD, etc.).
+- **Soft Skills** mais valorizadas (proatividade, organização, comunicação, trabalho em equipe, atenção aos detalhes).
+- **Faixa salarial de referência** para a posição júnior (valores podem variar por região/empresa/benefícios).
+- **Tendências e tecnologias emergentes** na área (Playwright, BDD/Cucumber, CI/CD, etc.).
+- **Plano de desenvolvimento de 6 meses** com projetos práticos para compor portfólio.
 
-> **Importante**: é necessário estar **conectado à internet** para carregar as bibliotecas das CDNs.
+**Objetivo**: servir como um **guia visual e prático** para estudantes e profissionais que buscam se posicionar de forma competitiva no mercado de QA.
 
-### Opção 1 — Abrir direto no navegador
-1. Baixe/clon​e o repositório.
-2. Dê **duplo clique** no arquivo `index.html`.
-3. Pronto!
+---
 
-### Opção 2 — Usar um servidor local
-- **VS Code + Live Server**: clique com o botão direito em `index.html` → *Open with Live Server*.
-- **Python (3.x)**:
+## ✨ Funcionalidades
+- **Gráficos interativos** com Chart.js (barras horizontais e anel).
+- **Design responsivo** com Tailwind CSS (layout adaptado para desktop e mobile).
+- **Navegação em página única** (SPA), com seções fluídas e conteúdo consolidado.
+- **Detalhamento das 15 vagas** analisadas, com as principais skills por vaga.
+- **Fontes e Referências** com links diretos para verificação.
+
+---
+
+## 🛠️ Tecnologias Utilizadas
+- **HTML5** – estrutura semântica do conteúdo.
+- **Tailwind CSS (CDN)** – design utility-first, rápido e responsivo.
+- **JavaScript (ES6+)** – lógica e manipulação do DOM.
+- **Chart.js (CDN)** – renderização dos gráficos.
+- **Google Fonts (Inter)** – tipografia.
+
+> Como as bibliotecas são carregadas via **CDN**, é recomendável estar **conectado à internet** ao abrir a página.
+
+---
+
+## 📊 Fonte dos Dados
+A análise é baseada em **15 anúncios de vagas** para “Analista de QA Júnior” (ou cargos similares) em plataformas de emprego no Brasil. A **referência salarial** utiliza médias públicas do **Glassdoor**.  
+Os links das vagas e referências estão listados na seção **“Fontes e Referências”** da própria página.
+
+---
+
+## ▶️ Como rodar localmente
+Projeto **estático** (somente HTML/CSS/JS). Não requer build.
+
+### Opção 1 — Abrir diretamente no navegador
+1. Baixe ou clone o repositório.
+2. Abra o arquivo **`index.html`** com duplo clique.
+
+### Opção 2 — Servir localmente
+- **VS Code + Live Server**
+  1. Instale a extensão *Live Server*.
+  2. Clique com o botão direito em `index.html` → **Open with Live Server**.
+- **Python 3.x**
   ```bash
   # na pasta do projeto
   python -m http.server 5500
-  # depois acesse: http://localhost:5500/index.html
+  # acesse: http://localhost:5500/index.html
   ```
-- **Node (http-server)**:
+- **Node (http-server)**
   ```bash
   npx http-server . -p 5500
   # acesse: http://localhost:5500
   ```
+
+> **Obs.**: por usar CDNs, mantenha a conexão com a internet para carregar Tailwind/Chart.js/Fonts.
+
 ---
 
-## Créditos
-- **Tecnologias**: HTML5, TailwindCSS (CDN), Chart.js (CDN), Google Fonts (Inter).
-- **Dados**: coletados de 15 vagas júnior + referência salarial pública (Glassdoor).
+## 🌐 Como publicar (GitHub Pages)
+1. Faça **push** do projeto para um repositório público no GitHub.
+2. Vá em **Settings → Pages**.
+3. Em **Source**, selecione a *branch* (ex.: `main`) e a pasta **`/root`**.
+4. Salve. A URL ficará no formato: `https://<seu-usuario>.github.io/<nome-do-repo>/`  
+   (Ex.: **https://fokeny.github.io/analise-de-mercado-qa/**).
+
+---
+
+## 📄 Observações
+- Valores salariais e exigências podem variar conforme empresa, região e momento do mercado.
+- Recomenda-se **atualizar os dados periodicamente** (mensal/trimestral) e registrar a data da coleta no README.
+
